@@ -5,7 +5,19 @@ import { Words } from '../interfaces/words';
 
 
 export function getWords(req: Request, res: Response): void {
-  res.json(rondomSelectionWordList());
+  try {
+    res.status(200).json({
+      status: 'success',
+      data: {
+        words: rondomSelectionWordList(),
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'invalid data',
+    });
+  }
 }
 
 
