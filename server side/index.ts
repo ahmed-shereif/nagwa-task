@@ -7,9 +7,6 @@ const app: Express = express();
 
 app.use('/api/v1/words', wordsRoute)
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("HELLO FROM EXPRESS + TS!!!!");
-});
 
 app.get("/words", (req: Request, res: Response) => {
   res.json();
