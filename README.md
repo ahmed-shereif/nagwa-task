@@ -8,7 +8,7 @@
  - $npm run serve
 
 2- to run the client side
-open another terminal and navigate to clien sid# 
+open another terminal and navigate to clien side# 
  - $cd '.\server side\'
  - $npm install
  - $npm start
