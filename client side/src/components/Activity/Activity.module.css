@@ -1,4 +1,34 @@
-.Activity {}
-div{
-  background-color: blue;
+.Activity{
+  width: 100%;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+
+
+label {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  width:100px;
+  text-align: center;
+  background-color: #9c56ca;
+  border-radius: 0.5em;
+  cursor: pointer;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.checked {
+  background-color: rgb(4, 0, 255);
+  color: #fff;
+}
+
+button:disabled{
+  background-color: #ccc;
+  color: #ca8989;
+  cursor: not-allowed;
 }
