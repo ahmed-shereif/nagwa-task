@@ -17,7 +17,7 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
   const [formStatus, setFormStatus] = useState<formState>(formState.intintial);
   const [score, setScore] = useState<number>(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
+  const [rank, setRank] = useState<number>(0);
 
   let finalScore = (score / 10) * 100;
 
@@ -28,6 +28,18 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
       .get("http://localhost:8000/api/v1/words")
       .then((response) => {
         setWords(response.data.data.words);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }
+
+  let fetchRank = () => {
+    axios
+      .post("http://localhost:8000/api/v1/rank", { score: finalScore })
+      .then((response) => {
+        setWords(response.data.data.rank);
       })
       .catch((error) => {
         // handle error
@@ -47,6 +59,13 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
     getWords
     , []);
 
+
+  useEffect(() => {
+    if (formStatus === formState.finshed) {
+      fetchRank()
+    }
+  }
+    , [formStatus]);
   return (
     <div className={styles.ActivityPage} >
       <Activity

@@ -33,7 +33,6 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
 
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
-    console.log('🤠ssssssssssss',)
     props.setFormStatus(formState.submitted)
     event.preventDefault();
     if (props.words && props?.words[props.currentIndex]?.pos === selectedValue) {
@@ -72,8 +71,7 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
       <div style={{ display: props.formStatus === formState.finshed ? "none" : "block" }} >
 
         <div className='flex flex-col flex-wrap justify-center content-center w-[200px] md:mx-0 mx-auto '>
-
-
+          {/* score */}
           <div className='text-center  my-[40px]  h-[120px] rounded-lg bg-black text-gray-200 text-4xl px-4 py-5 flex flex-col align-middle justify-center'>
             <div>
               score
@@ -94,41 +92,46 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
 
         </div>
 
-        <div className='questionBody text-center'>
-          <span className="question text-3xl font-mono text-gray-600 ">{props.counter + "-"} Select the type of the word: </span>
-          <span className="word text-5xl font-mono font-bold text-red-400">{props.words && props?.words[props.currentIndex]?.word}</span>
-          {/* question check */}
-          <div className='text-2xl text-blue-500 mt-10 h-10' >
-            <p style={{ display: props.formStatus === formState.submitted ? "block" : "none" }}> Your answer is <span className='text-green-500'>{isRightAnswer ? "right" : "wrong"}</span></p>
+        {/* question */}
+        {
+          props.counter < 11 &&
+          <div className='questionBody text-center'>
+            <span className="question text-3xl font-mono text-gray-600 ">{props.counter + "-"} Select the type of the word: </span>
+            <span className="word text-5xl font-mono font-bold text-red-400">{props.words && props?.words[props.currentIndex]?.word}</span>
+            {/* question check */}
+            <div className='text-2xl text-blue-500 mt-10 h-10' >
+              <p style={{ display: props.formStatus === formState.submitted ? "block" : "none" }}> Your answer is <span className='text-green-500'>{isRightAnswer ? "right" : "wrong"}</span></p>
 
+            </div>
           </div>
-        </div>
-
+        }
 
         <form className="sm:w-full md:w-[80%] lg:w-[40%] flex flex-col mx-auto" onSubmit={handleSubmit}  >
-          <div className="btn-container  items-center justify-around w-full flex my-[50px] md:my-[70px] flex-col md:flex-row ">
-            {
-              partOfSpeach.map((item) => {
-                return (
-                  <label key={item.id} className={selectedValue === item.value ? styles.checked : ""}  >
-                    <input
-                      type="radio"
-                      value={item.value}
-                      checked={selectedValue === item.value}
-                      onChange={handleOptionChange}
-                      disabled={props.formStatus === formState.submitted || props.formStatus === formState.finshed}
-                    />
-                    {item.label}
-                  </label>
-                )
-              })
-            }
-          </div>
+          {
+            props.counter < 11 &&
+            <div className="btn-container  items-center justify-around w-full flex my-[50px] md:my-[70px] flex-col md:flex-row ">
+              {
+                partOfSpeach.map((item) => {
+                  return (
+                    <label key={item.id} className={selectedValue === item.value ? styles.checked : ""}  >
+                      <input
+                        type="radio"
+                        value={item.value}
+                        checked={selectedValue === item.value}
+                        onChange={handleOptionChange}
+                        disabled={props.formStatus === formState.submitted || props.counter > 10}
+                      />
+                      {item.label}
+                    </label>
+                  )
+                })
+              }
+            </div>}
 
           {
-            props.counter === 10 ?
+            props.counter > 10 ?
 
-              <div >
+              <div className='submit flex mx-auto w-1/2 items-center justify-around '>
                 <button className='px-6 py-3 hover:bg-slate-700 round bg-slate-900 text-gray-200' type='button' onClick={ShowRank}>
                   Show Rank
                 </button>
