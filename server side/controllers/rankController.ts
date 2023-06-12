@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import data from '../data/TestData.json';
 
+
+let scoresList = data.scoresList;
 export function postRank(req: Request, res: Response): void {
   try {
     res.status(201).json({
@@ -18,17 +20,15 @@ export function postRank(req: Request, res: Response): void {
 }
 
 function calculateRank(score: number) {
-  data.scoresList.push(score)
-  let scoreListLength: number = data.scoresList.length;
+  scoresList.push(score)
+  let scoreListLength: number = scoresList.length;
   let numberOfScoresUnderThisScore: number = 0;
 
-  data.scoresList.map((scoreInList: number) => {
+  scoresList.map((scoreInList: number) => {
     if (scoreInList < score) {
       numberOfScoresUnderThisScore++
     }
   })
-
   let rank = (numberOfScoresUnderThisScore / scoreListLength) * 100
-
   return Math.round(rank);
 }
