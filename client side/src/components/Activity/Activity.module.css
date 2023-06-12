@@ -6,7 +6,9 @@ input[type="radio"] {
   display: none;
 }
 
-
+input:disabled  label {
+   cursor: not-allowed;
+}
 
 label {
   display: inline-block;
@@ -31,4 +33,13 @@ button:disabled{
   background-color: #ccc;
   color: #ca8989;
   cursor: not-allowed;
+}
+
+
+progress::-webkit-progress-bar {
+   background-color: rgb(154, 167, 154);
+   width: 100%;
+}
+progress::-webkit-progress-value {
+   background-color: rgb(0, 255, 157);
 }

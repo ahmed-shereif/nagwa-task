@@ -16,8 +16,14 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
   const [counter, setCounter] = useState<number>(1);
   const [formStatus, setFormStatus] = useState<formState>(formState.intintial);
   const [score, setScore] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  useEffect(() => {
+
+  let finalScore = (score / 10) * 100;
+
+
+
+  let getWords = () => {
     axios
       .get("http://localhost:8000/api/v1/words")
       .then((response) => {
@@ -27,29 +33,37 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
         // handle error
         console.log(error);
       });
+  }
 
+  function onTryAgain(): void {
+    getWords()
+    setCounter(1);
+    setScore(0);
+    setFormStatus(formState.intintial)
+    setCurrentIndex(0);
+  }
 
-  }, []);
-
+  useEffect(
+    getWords
+    , []);
 
   return (
     <div className={styles.ActivityPage} >
       <Activity
         words={words}
-        counter={counter}
-        setCounter={setCounter}
-        setFormStatus={setFormStatus}
-        formStatus={formStatus}
-        score={score} setScore={setScore
-        } />
+        counter={counter} setCounter={setCounter}
+        formStatus={formStatus} setFormStatus={setFormStatus}
+        score={score} setScore={setScore}
+        currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}
+      />
 
       <div className='my-[100px] w-full flex justify-center align-middle content-center' style={{ display: counter === 10 ? "block" : "none" }}>
 
-        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is </p>
+        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is {finalScore} %</p>
         <div className=' flex justify-center  mt-[50px]'>
 
           <button className='block text-center px-6 py-3 hover:bg-slate-700 round bg-slate-900 text-gray-200'
-            onClick={() => setFormStatus(formState.intintial)}>Tray Again</button>
+            onClick={onTryAgain}>Tray Again</button>
         </div>
       </div>
     </div>
