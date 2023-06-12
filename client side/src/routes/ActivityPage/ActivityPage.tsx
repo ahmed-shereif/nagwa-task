@@ -57,7 +57,7 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
         currentIndex={currentIndex} setCurrentIndex={setCurrentIndex}
       />
 
-      <div className='my-[100px] w-full flex justify-center align-middle content-center' style={{ display: counter === 10 ? "block" : "none" }}>
+      <div className='my-[100px] w-full flex justify-center align-middle content-center' style={{ display: formStatus === formState.finshed ? "block" : "none" }}>
 
         <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is {finalScore} %</p>
         <div className=' flex justify-center  mt-[50px]'>
