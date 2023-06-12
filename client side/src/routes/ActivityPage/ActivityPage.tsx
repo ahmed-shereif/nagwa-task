@@ -39,7 +39,7 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
     axios
       .post("http://localhost:8000/api/v1/rank", { score: finalScore })
       .then((response) => {
-        setWords(response.data.data.rank);
+        setRank(response.data.data.rank);
       })
       .catch((error) => {
         // handle error
@@ -78,7 +78,8 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
 
       <div className='my-[100px] w-full flex justify-center align-middle content-center' style={{ display: formStatus === formState.finshed ? "block" : "none" }}>
 
-        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is {finalScore} %</p>
+        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is: {finalScore} %</p>
+        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final Rank is: {rank}</p>
         <div className=' flex justify-center  mt-[50px]'>
 
           <button className='block text-center px-6 py-3 hover:bg-slate-700 round bg-slate-900 text-gray-200'

@@ -56,14 +56,7 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
   }
 
 
-  useEffect(() => {
-    console.log('👨‍🎨', props.counter)
-    console.log('🧚', props.formStatus)
-
-  }, [props, props.counter])
-
   function ShowRank(): void {
-    console.log('🤒',)
     props.setFormStatus(formState.finshed)
   }
   return (
@@ -86,7 +79,7 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
           {/* progress bar */}
           <div className=''>
             <div className='font-bold   text-gray-600' >Answered Questions</div>
-            <progress id="progress " value={props.currentIndex} max="9">  </progress>
+            <progress id="progress " value={props.currentIndex} max="10">  </progress>
 
           </div>
 
