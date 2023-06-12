@@ -78,8 +78,11 @@ const ActivityPage: FunctionComponent<ActivityProps> = () => {
 
       <div className='my-[100px] w-full flex justify-center align-middle content-center' style={{ display: formStatus === formState.finshed ? "block" : "none" }}>
 
-        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is: {finalScore} %</p>
-        <p className="question text-3xl font-mono text-gray-600 text-center ">Your final Rank is: {rank}</p>
+        <div className='w-full md:w-[550px] h-[200px] bg-slate-100 flex flex-wrap content-around p-10 mx-auto '>
+
+          <p className="question text-3xl font-mono text-gray-600 text-center ">Your final score is:<span className='font-bold'>{finalScore}%</span> </p>
+          <p className="question text-3xl font-mono text-gray-600 text-center ">Your final Rank is: <span className='font-bold'>{rank}</span></p>
+        </div>
         <div className=' flex justify-center  mt-[50px]'>
 
           <button className='block text-center px-6 py-3 hover:bg-slate-700 round bg-slate-900 text-gray-200'

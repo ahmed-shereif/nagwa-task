@@ -92,8 +92,8 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
             <span className="question text-3xl font-mono text-gray-600 ">{props.counter + "-"} Select the type of the word: </span>
             <span className="word text-5xl font-mono font-bold text-red-400">{props.words && props?.words[props.currentIndex]?.word}</span>
             {/* question check */}
-            <div className='text-2xl text-blue-500 mt-10 h-10' >
-              <p style={{ display: props.formStatus === formState.submitted ? "block" : "none" }}> Your answer is <span className='text-green-500'>{isRightAnswer ? "right" : "wrong"}</span></p>
+            <div className='text-2xl text-blue-700 mt-10 h-10' >
+              <p style={{ display: props.formStatus === formState.submitted ? "block" : "none" }}> Your answer is: <span className={isRightAnswer ? 'text-green-700 font-bold' : "text-red-700 font-bold"}>{isRightAnswer ? "Right" : "Wrong"}</span></p>
 
             </div>
           </div>
