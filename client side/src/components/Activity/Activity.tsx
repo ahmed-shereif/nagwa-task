@@ -126,7 +126,7 @@ const Activity: FC<ActivityProps> = (props: ActivityProps) => {
 
               <div className='submit flex mx-auto w-1/2 items-center justify-around '>
                 <button className='px-6 py-3 hover:bg-slate-700 round bg-slate-900 text-gray-200' type='button' onClick={ShowRank}>
-                  Show Rank
+                  Show Results
                 </button>
               </div>
               :
